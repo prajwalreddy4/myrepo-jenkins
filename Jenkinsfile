@@ -2,17 +2,17 @@ pipeline {
     agent any
     stages{
         stage("Checkout code stage"){
-            step{
+            steps{
                 git url:'https://github.com/prajwalreddy4/myrepo-jenkins.git', branch:'main'
             }
         }
         stage("Build docker image"){
-            step{
+            steps{
                 sh 'docker build -t myimage .'
             }
         }
         stage("Create Container"){
-            step{
+            steps{
                 sh 'docker run -d -p 8501:8501 --name="mycontainer" myimage'
             }
         }
